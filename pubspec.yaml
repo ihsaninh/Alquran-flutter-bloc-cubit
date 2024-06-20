@@ -1,0 +1,45 @@
+name: quran_app
+description: "Quran"
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
+  get_it: ^7.7.0
+  retrofit: ^4.0.1
+  dio: ^5.4.3+1
+  json_annotation: ^4.8.1
+  google_fonts: ^6.2.1
+  fpdart: ^1.1.0
+  go_router: ^14.2.0
+  flutter_svg: ^2.0.10+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+  retrofit_generator: ^8.1.0
+  build_runner: ^2.1.2
+  json_serializable: ^6.6.2
+
+flutter:
+  uses-material-design: true
+  
+  fonts:
+    - family: LPMQ
+      fonts:
+        - asset: assets/fonts/LPMQ.ttf
+
+  assets:
+    - assets/images/
