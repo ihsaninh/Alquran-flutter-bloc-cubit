@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_app/config/router/navigation_data.dart';
 import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
-import 'package:quran_app/features/quran/presentation/widgets/appbar.dart';
+import 'package:quran_app/features/quran/presentation/widgets/custom_appbar.dart';
 import 'package:quran_app/features/quran/presentation/widgets/last_read_card.dart';
 import 'package:quran_app/features/quran/presentation/widgets/quran_list_item.dart';
 import 'package:quran_app/features/quran/presentation/widgets/section_title.dart';
@@ -31,7 +31,11 @@ class _QuranHomeState extends State<QuranHome> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: CustomAppBar(
         title: Dictionary.appName,
-        onMenuPressed: () => {},
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          splashColor: Theme.of(context).colorScheme.secondaryContainer,
+          onPressed: () {},
+        ),
         actions: [
           IconButton(
             splashColor: Theme.of(context).colorScheme.secondaryContainer,
@@ -56,11 +60,14 @@ class _QuranHomeState extends State<QuranHome> {
       body: RefreshIndicator(
         onRefresh: () async {},
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.only(top: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SectionTitle(title: Dictionary.lastRead),
+              const SectionTitle(
+                title: Dictionary.lastRead,
+                padding: 16.0,
+              ),
               const SizedBox(height: 16.0),
               const LastReadCard(),
               const SizedBox(height: 16.0),
@@ -87,7 +94,7 @@ class _QuranHomeState extends State<QuranHome> {
                           itemBuilder: (context, index) {
                             final quranList = state.quranlist[index];
                             return QuranListItem(
-                              quranListEntity: quranList,
+                              quranList: quranList,
                             );
                           },
                         ),

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:quran_app/features/quran/domain/entities/quran_list.dart';
 import 'package:quran_app/features/quran/presentation/pages/quran_ayah/quran_ayah.dart';
 import 'package:quran_app/features/quran/presentation/pages/quran_home/quran_home.dart';
 
@@ -9,11 +10,14 @@ final router = GoRouter(
       builder: (context, state) => const QuranHome(),
     ),
     GoRoute(
-      path: '/quran-ayah/:surahId',
-      builder: (context, state) => QuranAyah(
-        surahId: state.pathParameters["surahId"]!,
-        surahName: state.uri.queryParameters["surahName"]!,
-      ),
+      name: 'quran-ayah',
+      path: '/quran-ayah',
+      builder: (context, state) {
+        QuranListEntity quranListEntity = state.extra as QuranListEntity;
+        return QuranAyah(
+          surah: quranListEntity,
+        );
+      },
     ),
   ],
 );

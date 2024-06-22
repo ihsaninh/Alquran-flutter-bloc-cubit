@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
-  final VoidCallback? onMenuPressed;
+  final Widget? leading;
+  final bool centerTitle;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.actions,
-    this.onMenuPressed,
+    this.leading,
+    this.centerTitle = false,
   });
 
   @override
@@ -22,13 +24,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      leading: IconButton(
-        splashColor: Theme.of(context).colorScheme.secondaryContainer,
-        onPressed: onMenuPressed,
-        icon: const Icon(Icons.menu),
-      ),
+      leading: leading,
       actions: actions,
-      centerTitle: false,
+      centerTitle: centerTitle,
       backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
     );
   }

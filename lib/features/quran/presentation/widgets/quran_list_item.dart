@@ -4,18 +4,16 @@ import 'package:go_router/go_router.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_list.dart';
 
 class QuranListItem extends StatelessWidget {
-  final QuranListEntity quranListEntity;
+  final QuranListEntity quranList;
 
-  const QuranListItem({super.key, required this.quranListEntity});
+  const QuranListItem({super.key, required this.quranList});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: Theme.of(context).colorScheme.secondaryContainer,
       onTap: () {
-        context.push(
-          '/quran-ayah/${quranListEntity.id}?surahName=${quranListEntity.latin}',
-        );
+        context.pushNamed("quran-ayah", extra: quranList);
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -37,7 +35,7 @@ class QuranListItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      quranListEntity.id.toString(),
+                      quranList.id.toString(),
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             fontWeight: FontWeight.w700,
                             color: Theme.of(context)
@@ -52,7 +50,7 @@ class QuranListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      quranListEntity.latin,
+                      quranList.latin,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             fontSize: 18.0,
                             fontWeight: FontWeight.w500,
@@ -62,7 +60,7 @@ class QuranListItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 4.0),
                     Text(
-                      "${quranListEntity.numAyah} Ayat | ${quranListEntity.location}",
+                      "${quranList.numAyah} Ayat | ${quranList.location}",
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             color: Theme.of(context)
                                 .colorScheme
@@ -75,7 +73,7 @@ class QuranListItem extends StatelessWidget {
               ],
             ),
             Text(
-              quranListEntity.arabic,
+              quranList.arabic,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Theme.of(context)
                         .colorScheme
