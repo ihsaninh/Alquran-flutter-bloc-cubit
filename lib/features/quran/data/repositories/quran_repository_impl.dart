@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:quran_app/core/errors/failures.dart';
-import 'package:quran_app/features/quran/data/datasources/remote/quran_api_service.dart';
+import 'package:quran_app/features/quran/data/data_sources/remote/quran_api_service.dart';
 import 'package:quran_app/features/quran/data/models/quran_list.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_ayah.dart';
+import 'package:quran_app/features/quran/domain/entities/quran_tafsir.dart';
 import 'package:quran_app/features/quran/domain/repositories/quran_repository.dart';
 
 class QuranRepositoryImpl implements QuranRepository {
@@ -27,6 +28,18 @@ class QuranRepositoryImpl implements QuranRepository {
   }) async {
     try {
       final httpResponse = await _quranApiService.getSurahAyah(surahId);
+      return right(httpResponse.data);
+    } on DioException catch (e) {
+      return left(Failure(e.message!));
+    }
+  }
+
+  @override
+  Future<Either<Failure, QuranTafsirEntity>> getQuranTafsir({
+    required String id,
+  }) async {
+    try {
+      final httpResponse = await _quranApiService.getSurahTafsir(id);
       return right(httpResponse.data);
     } on DioException catch (e) {
       return left(Failure(e.message!));

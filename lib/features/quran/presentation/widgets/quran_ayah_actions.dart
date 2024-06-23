@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_ayah.dart';
+import 'package:quran_app/features/quran/presentation/widgets/tafsir_sheet.dart';
 
 class QuranAyahActions extends StatelessWidget {
   final QuranAyahEntity quranAyah;
@@ -45,7 +46,7 @@ class QuranAyahActions extends StatelessWidget {
                 ),
                 IconButton(
                   tooltip: "Lihat tafsir",
-                  onPressed: () {},
+                  onPressed: () => _showTafsir(context, quranAyah),
                   icon: const Icon(Icons.book_outlined),
                 ),
               ],
@@ -53,6 +54,19 @@ class QuranAyahActions extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showTafsir(BuildContext context, QuranAyahEntity quranAyah) {
+    return showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (BuildContext context) {
+        return TafsirSheet(
+          quranAyah: quranAyah,
+        );
+      },
     );
   }
 }

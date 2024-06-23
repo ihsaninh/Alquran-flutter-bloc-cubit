@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/presentation/widgets/settings_sheet_content_section.dart';
 import 'package:quran_app/features/quran/presentation/widgets/settings_sheet_font_section.dart';
-import 'package:quran_app/features/quran/presentation/widgets/settings_sheet_header.dart';
+import 'package:quran_app/features/quran/presentation/widgets/bottom_sheet_header.dart';
 
 class SettingsSheet extends StatelessWidget {
   const SettingsSheet({super.key});
@@ -16,7 +17,9 @@ class SettingsSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SettingsSheetHeader(),
+          BottomSheetHeader(
+            title: Dictionary.settingsSurah,
+          ),
           SettingsSheetContentSection(),
           SettingsSheetFontSection()
         ],

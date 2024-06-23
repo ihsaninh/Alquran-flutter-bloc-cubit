@@ -1,6 +1,7 @@
 import 'package:quran_app/core/constants/constants.dart';
 import 'package:quran_app/features/quran/data/models/quran_ayah.dart';
 import 'package:quran_app/features/quran/data/models/quran_list.dart';
+import 'package:quran_app/features/quran/data/models/quran_tafsir.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
@@ -17,4 +18,7 @@ abstract class QuranApiService {
   Future<HttpResponse<List<QuranAyahModel>>> getSurahAyah(
     @Query('surah') String surahId,
   );
+
+  @GET('/quran-tafsir/{id}')
+  Future<HttpResponse<QuranTafsirModel>> getSurahTafsir(@Path() String id);
 }

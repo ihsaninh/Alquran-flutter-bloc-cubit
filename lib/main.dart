@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_app/config/router/router_config.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_ayah/quran_ayah_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
+import 'package:quran_app/features/quran/presentation/bloc/quran_tafsir/quran_tafsir_bloc.dart';
 import 'package:quran_app/injection_container.dart';
 
 Future<void> main() async {
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
           create: (context) => locator()..add(const GetQuranList()),
         ),
         BlocProvider<QuranAyahBloc>(
+          create: (context) => locator(),
+        ),
+        BlocProvider<QuranTafsirBloc>(
           create: (context) => locator(),
         ),
       ],
