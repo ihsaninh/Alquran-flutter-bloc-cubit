@@ -54,7 +54,12 @@ class _TafsirSheetState extends State<TafsirSheet> {
                       child: ListView(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.fromLTRB(
+                              16.0,
+                              4.0,
+                              16.0,
+                              16.0,
+                            ),
                             child: Text(
                               state.tafsir.tahlili,
                               style: Theme.of(context)

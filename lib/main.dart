@@ -3,14 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_app/config/router/router_config.dart';
+import 'package:quran_app/features/quran/presentation/bloc/quran_settings/quran_settings_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_ayah/quran_ayah_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_tafsir/quran_tafsir_bloc.dart';
 import 'package:quran_app/injection_container.dart';
+import 'package:quran_app/simple_bloc_observer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDependencies();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
@@ -32,6 +35,9 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider<QuranSettingsBloc>(
+          create: (context) => locator()..add(const GetQuranSettings()),
+        ),
         BlocProvider<QuranListBloc>(
           create: (context) => locator()..add(const GetQuranList()),
         ),
@@ -51,9 +57,7 @@ class MyApp extends StatelessWidget {
               TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
             },
           ),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.brown,
-          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           ),
