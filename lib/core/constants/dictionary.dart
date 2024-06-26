@@ -20,8 +20,9 @@ class Dictionary {
   static const String playSurah = 'Mainkan Surah';
   static const String showTafsir = 'Lihat Tafsir';
   static const String copyAyat = 'Salin Ayat';
-  static const String shareAyat = 'Bagikan Surah';
+  static const String shareAyat = 'Bagikan ayat';
   static const String lastRead = 'Terakhir Dibaca';
   static const String surah = 'Daftar Surah';
   static const String settingsSurah = 'Setelan Surah';
+  static const String saveBookmark = 'Simpan ke bookmark';
 }

@@ -37,7 +37,6 @@ class ListTileSwitch extends StatelessWidget {
         trailing: Transform.scale(
           scale: 0.8,
           child: Switch(
-            // This bool value toggles the switch.
             value: value,
             onChanged: onChanged,
           ),

@@ -8,12 +8,10 @@ import 'package:quran_app/features/quran/presentation/bloc/quran_ayah/quran_ayah
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_tafsir/quran_tafsir_bloc.dart';
 import 'package:quran_app/injection_container.dart';
-import 'package:quran_app/simple_bloc_observer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDependencies();
-  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 

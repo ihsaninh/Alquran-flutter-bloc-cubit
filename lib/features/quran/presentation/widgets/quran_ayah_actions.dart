@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_ayah.dart';
 import 'package:quran_app/features/quran/presentation/widgets/tafsir_sheet.dart';
 
@@ -30,24 +31,32 @@ class QuranAyahActions extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                  tooltip: "Salin ayat",
+                  tooltip: Dictionary.copyAyat,
                   onPressed: () {},
-                  icon: const Icon(Icons.content_copy),
+                  icon: const Icon(
+                    Icons.content_copy,
+                  ),
                 ),
                 IconButton(
-                  tooltip: "Bagikan ayat",
+                  tooltip: Dictionary.shareAyat,
                   onPressed: () {},
-                  icon: const Icon(Icons.share_sharp),
+                  icon: const Icon(
+                    Icons.share_sharp,
+                  ),
                 ),
                 IconButton(
-                  tooltip: "Simpan ke bookmark",
+                  tooltip: Dictionary.saveBookmark,
                   onPressed: () {},
-                  icon: const Icon(Icons.bookmark_outline),
+                  icon: const Icon(
+                    Icons.bookmark_outline,
+                  ),
                 ),
                 IconButton(
-                  tooltip: "Lihat tafsir",
+                  tooltip: Dictionary.showTafsir,
                   onPressed: () => _showTafsir(context, quranAyah),
-                  icon: const Icon(Icons.book_outlined),
+                  icon: const Icon(
+                    Icons.book_outlined,
+                  ),
                 ),
               ],
             )
