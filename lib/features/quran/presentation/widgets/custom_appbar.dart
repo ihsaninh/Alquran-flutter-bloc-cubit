@@ -17,6 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      forceMaterialTransparency: true,
       title: Text(
         title,
         style: TextStyle(
@@ -27,7 +28,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leading,
       actions: actions,
       centerTitle: centerTitle,
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
     );
   }
 

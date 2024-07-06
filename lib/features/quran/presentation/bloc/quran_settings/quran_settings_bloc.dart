@@ -15,28 +15,34 @@ class QuranSettingsBloc extends Bloc<QuranSettingsEvent, QuranSettingsState> {
   QuranSettingsBloc(
     this._getQuranSettingsUseCase,
     this._setQuranSettingsUseCase,
-  ) : super(QuranSettingsInitial()) {
+  ) : super(const QuranSettingsState(QuranSettingsEntity(
+          showArabic: false,
+          showTranslation: false,
+          showLatin: false,
+          showFootnotes: false,
+          arabicFontSize: 32,
+          latinFontSize: 14,
+        ))) {
     on<GetQuranSettings>(onGetAppSettings);
     on<SetQuranSettings>(onSetAppSettings);
   }
 
-  Future<void> onGetAppSettings(
-      GetQuranSettings event, Emitter<QuranSettingsState> emit) async {
-    final res = await _getQuranSettingsUseCase(NoParams());
-
-    res.fold(
-      (l) => emit(QuranSettingsLoadFailure()),
-      (r) => emit(QuranSettingsLoadSuccess(r)),
-    );
+  void onGetAppSettings(
+    GetQuranSettings event,
+    Emitter<QuranSettingsState> emit,
+  ) {
+    final res = _getQuranSettingsUseCase(NoParams());
+    emit(QuranSettingsState(res));
   }
 
-  Future<void> onSetAppSettings(
-      SetQuranSettings event, Emitter<QuranSettingsState> emit) async {
-    final res = await _setQuranSettingsUseCase(
-        SetAppSettingsParams(key: event.key, value: event.value));
-    res.fold(
-      (l) => emit(QuranSettingsLoadFailure()),
-      (r) => emit(QuranSettingsLoadSuccess(r)),
-    );
+  void onSetAppSettings(
+    SetQuranSettings event,
+    Emitter<QuranSettingsState> emit,
+  ) {
+    final res = _setQuranSettingsUseCase(SetAppSettingsParams(
+      key: event.key,
+      value: event.value,
+    ));
+    emit(QuranSettingsState(res));
   }
 }

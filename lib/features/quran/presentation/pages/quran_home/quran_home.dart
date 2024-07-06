@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quran_app/config/router/navigation_data.dart';
 import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
@@ -28,83 +29,89 @@ class _QuranHomeState extends State<QuranHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: CustomAppBar(
-        title: Dictionary.appName,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerLowest,
+      appBar: _buildAppBar(context),
+      bottomNavigationBar: _buildBottomNavigationBar(context),
+      body: _buildBody(context),
+    );
+  }
+
+  CustomAppBar _buildAppBar(BuildContext context) {
+    return CustomAppBar(
+      centerTitle: true,
+      title: Dictionary.appName,
+      leading: IconButton(
+        icon: const Icon(LucideIcons.alignLeft),
+        splashColor: Theme.of(context).colorScheme.secondaryContainer,
+        onPressed: () {},
+      ),
+      actions: [
+        IconButton(
           splashColor: Theme.of(context).colorScheme.secondaryContainer,
           onPressed: () {},
+          icon: const Icon(LucideIcons.search),
         ),
-        actions: [
-          IconButton(
-            splashColor: Theme.of(context).colorScheme.secondaryContainer,
-            onPressed: () => {},
-            icon: const Icon(Icons.search),
+      ],
+    );
+  }
+
+  NavigationBar _buildBottomNavigationBar(BuildContext context) {
+    return NavigationBar(
+      destinations: navigationItems
+          .map(
+            (item) => NavigationDestination(
+              icon: Icon(item.icon),
+              label: item.label,
+            ),
+          )
+          .toList(),
+      selectedIndex: currentPageIndex,
+      onDestinationSelected: _onItemTapped,
+      elevation: 10.0,
+      indicatorColor: Theme.of(context).colorScheme.surfaceContainerLow,
+      shadowColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerLowest,
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () async {},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SectionTitle(
+            title: Dictionary.lastRead,
+            padding: 16.0,
+          ),
+          const SizedBox(height: 16.0),
+          const LastReadCard(),
+          const SizedBox(height: 16.0),
+          BlocBuilder<QuranListBloc, QuranListState>(
+            builder: (context, state) {
+              return switch (state) {
+                QuranListInitial() => const SizedBox(),
+                QuranListLoadInProgress() => const Expanded(
+                    child: Center(
+                      child: CupertinoActivityIndicator(),
+                    ),
+                  ),
+                QuranListLoadFailure() => Center(
+                    child: Text(state.error),
+                  ),
+                QuranListLoadSuccess() => Expanded(
+                    child: ListView.builder(
+                      itemCount: state.quranlist.length,
+                      itemBuilder: (context, index) {
+                        final quranList = state.quranlist[index];
+                        return QuranListItem(quranList: quranList);
+                      },
+                    ),
+                  ),
+              };
+            },
           ),
         ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        destinations: navigationItems
-            .map(
-              (item) => NavigationDestination(
-                icon: Icon(item.icon),
-                label: item.label,
-              ),
-            )
-            .toList(),
-        selectedIndex: currentPageIndex,
-        onDestinationSelected: _onItemTapped,
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {},
-        child: Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SectionTitle(
-                title: Dictionary.lastRead,
-                padding: 16.0,
-              ),
-              const SizedBox(height: 16.0),
-              const LastReadCard(),
-              const SizedBox(height: 16.0),
-              BlocBuilder<QuranListBloc, QuranListState>(
-                builder: (context, state) {
-                  return switch (state) {
-                    QuranListInitial() => const SizedBox(),
-                    QuranListLoadInProgress() => const Expanded(
-                        child: Center(
-                          child: CupertinoActivityIndicator(),
-                        ),
-                      ),
-                    QuranListLoadFailure() => Center(
-                        child: Text(state.error),
-                      ),
-                    QuranListLoadSuccess() => Expanded(
-                        child: ListView.separated(
-                          separatorBuilder: (context, index) => Divider(
-                            height: 1,
-                            color:
-                                Theme.of(context).colorScheme.surfaceContainer,
-                          ),
-                          itemCount: state.quranlist.length,
-                          itemBuilder: (context, index) {
-                            final quranList = state.quranlist[index];
-                            return QuranListItem(
-                              quranList: quranList,
-                            );
-                          },
-                        ),
-                      ),
-                  };
-                },
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

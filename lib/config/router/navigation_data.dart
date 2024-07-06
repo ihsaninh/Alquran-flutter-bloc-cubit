@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quran_app/core/constants/dictionary.dart';
 
 class NavigationItem {
@@ -9,7 +10,7 @@ class NavigationItem {
 }
 
 const List<NavigationItem> navigationItems = [
-  NavigationItem(icon: Icons.home, label: Dictionary.homeTabs),
-  NavigationItem(icon: Icons.bookmark, label: Dictionary.bookmarkTabs),
-  NavigationItem(icon: Icons.settings, label: Dictionary.settingsTabs),
+  NavigationItem(icon: LucideIcons.home, label: Dictionary.homeTabs),
+  NavigationItem(icon: LucideIcons.bookmark, label: Dictionary.bookmarkTabs),
+  NavigationItem(icon: LucideIcons.settings, label: Dictionary.settingsTabs),
 ];

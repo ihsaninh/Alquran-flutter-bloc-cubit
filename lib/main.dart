@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_app/config/router/router_config.dart';
+import 'package:quran_app/features/quran/presentation/bloc/quran_last_read/quran_last_read_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_settings/quran_settings_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_ayah/quran_ayah_bloc.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<QuranTafsirBloc>(
           create: (context) => locator(),
         ),
+        BlocProvider<QuranLastReadBloc>(
+          create: (context) => locator(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -55,8 +59,8 @@ class MyApp extends StatelessWidget {
               TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
             },
           ),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
-          textTheme: GoogleFonts.poppinsTextTheme(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+          textTheme: GoogleFonts.interTextTheme(
             Theme.of(context).textTheme,
           ),
         ),

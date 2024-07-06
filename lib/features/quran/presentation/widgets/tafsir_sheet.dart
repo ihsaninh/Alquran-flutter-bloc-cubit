@@ -70,7 +70,7 @@ class _TafsirSheetState extends State<TafsirSheet> {
                                     fontWeight: FontWeight.w500,
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onPrimaryFixedVariant,
+                                        .onSurfaceVariant,
                                   ),
                             ),
                           ),

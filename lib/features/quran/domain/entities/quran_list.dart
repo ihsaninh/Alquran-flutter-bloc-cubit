@@ -9,6 +9,9 @@ class QuranListEntity extends Equatable {
   final int numAyah;
   final int page;
   final String location;
+  final int? index;
+  final int? lastReadAyah;
+  final DateTime? createdAt;
 
   const QuranListEntity({
     required this.id,
@@ -19,10 +22,13 @@ class QuranListEntity extends Equatable {
     required this.numAyah,
     required this.page,
     required this.location,
+    this.index,
+    this.lastReadAyah,
+    this.createdAt,
   });
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       arabic,
@@ -32,6 +38,9 @@ class QuranListEntity extends Equatable {
       numAyah,
       page,
       location,
+      index,
+      lastReadAyah,
+      createdAt,
     ];
   }
 }

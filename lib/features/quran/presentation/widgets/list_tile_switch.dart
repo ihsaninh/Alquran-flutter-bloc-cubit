@@ -14,32 +14,23 @@ class ListTileSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Theme.of(context).colorScheme.surfaceContainer,
-          ),
-        ),
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              color: Theme.of(context)
+                  .colorScheme
+                  .onSurfaceVariant
+                  .withOpacity(0.7),
+              fontWeight: FontWeight.w500,
+            ),
       ),
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Theme.of(context)
-                    .colorScheme
-                    .onPrimaryFixedVariant
-                    .withOpacity(0.8),
-                fontWeight: FontWeight.w500,
-              ),
-        ),
-        trailing: Transform.scale(
-          scale: 0.8,
-          child: Switch(
-            value: value,
-            onChanged: onChanged,
-          ),
+      trailing: Transform.scale(
+        scale: 0.8,
+        child: Switch(
+          value: value,
+          onChanged: onChanged,
         ),
       ),
     );

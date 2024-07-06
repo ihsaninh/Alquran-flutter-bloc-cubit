@@ -6,6 +6,8 @@ class QuranSettingsModel extends QuranSettingsEntity {
     required super.showArabic,
     required super.showLatin,
     required super.showFootnotes,
+    required super.arabicFontSize,
+    required super.latinFontSize,
   });
 
   factory QuranSettingsModel.fromJson(Map<String, dynamic> json) {
@@ -14,6 +16,8 @@ class QuranSettingsModel extends QuranSettingsEntity {
       showArabic: json['show_arabic'] ?? false,
       showLatin: json['show_latin'] ?? false,
       showFootnotes: json['show_footnotes'] ?? false,
+      arabicFontSize: json['arabic_font_size'] ?? 32,
+      latinFontSize: json['latin_font_size'] ?? 14,
     );
   }
 
@@ -23,6 +27,8 @@ class QuranSettingsModel extends QuranSettingsEntity {
       'show_arabic': showArabic,
       'show_latin': showLatin,
       'show_footnotes': showFootnotes,
+      'arabic_font_size': arabicFontSize,
+      'latin_font_size': latinFontSize,
     };
   }
 
@@ -31,12 +37,16 @@ class QuranSettingsModel extends QuranSettingsEntity {
     bool? showArabic,
     bool? showLatin,
     bool? showFootnotes,
+    double? arabicFontSize,
+    double? latinFontSize,
   }) {
     return QuranSettingsModel(
       showTranslation: showTranslation ?? this.showTranslation,
       showArabic: showArabic ?? this.showArabic,
       showLatin: showLatin ?? this.showLatin,
       showFootnotes: showFootnotes ?? this.showFootnotes,
+      arabicFontSize: arabicFontSize ?? this.arabicFontSize,
+      latinFontSize: latinFontSize ?? this.latinFontSize,
     );
   }
 }

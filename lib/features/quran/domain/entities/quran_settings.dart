@@ -5,12 +5,16 @@ class QuranSettingsEntity extends Equatable {
   final bool showArabic;
   final bool showLatin;
   final bool showFootnotes;
+  final double arabicFontSize;
+  final double latinFontSize;
 
   const QuranSettingsEntity({
     required this.showTranslation,
     required this.showArabic,
     required this.showLatin,
     required this.showFootnotes,
+    required this.arabicFontSize,
+    required this.latinFontSize,
   });
 
   @override
@@ -20,6 +24,8 @@ class QuranSettingsEntity extends Equatable {
       showArabic,
       showLatin,
       showFootnotes,
+      arabicFontSize,
+      latinFontSize,
     ];
   }
 }

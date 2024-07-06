@@ -1,17 +1,21 @@
 import 'package:hive/hive.dart';
+import 'package:quran_app/features/quran/data/models/quran_list.dart';
 import 'package:quran_app/features/quran/data/models/quran_settings.dart';
+import 'package:quran_app/features/quran/domain/entities/quran_list.dart';
 
-abstract interface class QuranSettingsDataSource {
+abstract interface class QuranLocalDataSource {
   QuranSettingsModel loadQuranSettings();
   QuranSettingsModel setQuranSettings({
     required String key,
     required dynamic value,
   });
+  void addToLastRead(QuranListEntity quranModel, int index, int lastReadAyah);
+  QuranListModel? getLastRead();
 }
 
-class QuranSettingsDataSourceImpl implements QuranSettingsDataSource {
+class QuranLocalDataSourceImpl implements QuranLocalDataSource {
   final Box box;
-  QuranSettingsDataSourceImpl(this.box);
+  QuranLocalDataSourceImpl(this.box);
 
   @override
   QuranSettingsModel loadQuranSettings() {
@@ -36,6 +40,8 @@ class QuranSettingsDataSourceImpl implements QuranSettingsDataSource {
       showTranslation: true,
       showLatin: true,
       showFootnotes: false,
+      arabicFontSize: 32.0,
+      latinFontSize: 14.0,
     );
 
     box.put('settings', defaultSettings.toJson());
@@ -65,7 +71,36 @@ class QuranSettingsDataSourceImpl implements QuranSettingsDataSource {
       'showTranslation': (value) => settings.copyWith(showTranslation: value),
       'showLatin': (value) => settings.copyWith(showLatin: value),
       'showFootnotes': (value) => settings.copyWith(showFootnotes: value),
+      'arabicFontSize': (value) => settings.copyWith(arabicFontSize: value),
+      'latinFontSize': (value) => settings.copyWith(latinFontSize: value),
     };
     return updateFunctions[key]?.call(value) ?? settings;
+  }
+
+  @override
+  void addToLastRead(QuranListEntity quranModel, int index, int lastReadAyah) {
+    final QuranListModel lastRead = QuranListModel(
+      id: quranModel.id,
+      arabic: quranModel.arabic,
+      latin: quranModel.latin,
+      transliteration: quranModel.transliteration,
+      translation: quranModel.translation,
+      numAyah: quranModel.numAyah,
+      page: quranModel.page,
+      location: quranModel.location,
+      index: index,
+      lastReadAyah: lastReadAyah,
+      createdAt: DateTime.now(),
+    );
+    box.put('lastRead', lastRead.toJson());
+  }
+
+  @override
+  QuranListModel? getLastRead() {
+    final lastRead = box.get('lastRead');
+    if (lastRead != null) {
+      return QuranListModel.fromJson(lastRead);
+    }
+    return null;
   }
 }

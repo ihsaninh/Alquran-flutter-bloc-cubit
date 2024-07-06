@@ -13,9 +13,14 @@ abstract interface class QuranRepository {
   Future<Either<Failure, QuranTafsirEntity>> getQuranTafsir({
     required String id,
   });
-  Future<Either<Failure, QuranSettingsEntity>> getAppSettings();
-  Future<Either<Failure, QuranSettingsEntity>> setAppSettings({
+  QuranSettingsEntity getAppSettings();
+  QuranSettingsEntity setAppSettings({
     required String key,
     required dynamic value,
   });
+  void addToLastRead(
+      {required QuranListEntity surah,
+      required int index,
+      required int lastReadAyah});
+  Either<Failure, QuranListEntity> getLastRead();
 }

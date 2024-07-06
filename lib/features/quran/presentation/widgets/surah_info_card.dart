@@ -11,6 +11,7 @@ class SurahInfoCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       width: MediaQuery.of(context).size.width,
       child: Card.filled(
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         margin: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -31,8 +32,8 @@ class SurahInfoCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Theme.of(context)
                           .colorScheme
-                          .onPrimaryFixedVariant
-                          .withOpacity(0.8),
+                          .onSurfaceVariant
+                          .withOpacity(0.7),
                     ),
               ),
               const SizedBox(height: 8.0),
@@ -41,8 +42,8 @@ class SurahInfoCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Theme.of(context)
                           .colorScheme
-                          .onPrimaryFixedVariant
-                          .withOpacity(0.8),
+                          .onSurfaceVariant
+                          .withOpacity(0.7),
                     ),
               ),
               const SizedBox(height: 4.0),
@@ -51,8 +52,8 @@ class SurahInfoCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Theme.of(context)
                           .colorScheme
-                          .onPrimaryFixedVariant
-                          .withOpacity(0.8),
+                          .onSurfaceVariant
+                          .withOpacity(0.7),
                     ),
               ),
             ],

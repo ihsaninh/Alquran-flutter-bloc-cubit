@@ -26,11 +26,14 @@ class QuranListItem extends StatelessWidget {
                   alignment: Alignment.center,
                   children: <Widget>[
                     SvgPicture.asset(
-                      'assets/images/ocatagon.svg',
+                      'assets/images/octagon.svg',
                       width: 48,
                       height: 48,
                       colorFilter: ColorFilter.mode(
-                        Theme.of(context).primaryColor,
+                        Theme.of(context)
+                            .colorScheme
+                            .onSurfaceVariant
+                            .withOpacity(0.7),
                         BlendMode.srcIn,
                       ),
                     ),
@@ -40,7 +43,8 @@ class QuranListItem extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             color: Theme.of(context)
                                 .colorScheme
-                                .onPrimaryFixedVariant,
+                                .onSurfaceVariant
+                                .withOpacity(0.8),
                           ),
                     ),
                   ],
@@ -64,8 +68,8 @@ class QuranListItem extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             color: Theme.of(context)
                                 .colorScheme
-                                .onPrimaryFixedVariant
-                                .withOpacity(0.8),
+                                .onSurfaceVariant
+                                .withOpacity(0.7),
                           ),
                     ),
                   ],
@@ -77,8 +81,8 @@ class QuranListItem extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Theme.of(context)
                         .colorScheme
-                        .onPrimaryFixedVariant
-                        .withOpacity(0.8),
+                        .onSurfaceVariant
+                        .withOpacity(0.7),
                     fontFamily: 'LPMQ',
                   ),
             ),

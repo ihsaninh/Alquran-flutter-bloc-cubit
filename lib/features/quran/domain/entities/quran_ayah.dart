@@ -33,7 +33,7 @@ class QuranAyahEntity extends Equatable {
   });
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       surahId,
@@ -47,7 +47,7 @@ class QuranAyahEntity extends Equatable {
       arabicWords,
       translation,
       footnotes,
-      surah
+      surah,
     ];
   }
 }

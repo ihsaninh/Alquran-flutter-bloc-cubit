@@ -21,6 +21,7 @@ class Dictionary {
   static const String showTafsir = 'Lihat Tafsir';
   static const String copyAyat = 'Salin Ayat';
   static const String shareAyat = 'Bagikan ayat';
+  static const String moreActions = 'Lainnya';
   static const String lastRead = 'Terakhir Dibaca';
   static const String surah = 'Daftar Surah';
   static const String settingsSurah = 'Setelan Surah';
