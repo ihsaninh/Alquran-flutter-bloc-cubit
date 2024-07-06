@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_ayah.dart';
-import 'package:quran_app/features/quran/domain/entities/quran_list.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_last_read/quran_last_read_bloc.dart';
 import 'package:quran_app/features/quran/presentation/widgets/tafsir_sheet.dart';
 

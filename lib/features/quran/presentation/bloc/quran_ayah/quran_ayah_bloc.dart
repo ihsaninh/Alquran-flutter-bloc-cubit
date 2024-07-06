@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quran_app/features/quran/data/models/quran_list.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_ayah.dart';
 import 'package:quran_app/features/quran/domain/usecases/get_surah_ayah.dart';
 
