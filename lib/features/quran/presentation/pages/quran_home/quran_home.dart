@@ -6,9 +6,8 @@ import 'package:quran_app/config/router/navigation_data.dart';
 import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_list/quran_list_bloc.dart';
 import 'package:quran_app/features/quran/presentation/widgets/custom_appbar.dart';
-import 'package:quran_app/features/quran/presentation/widgets/last_read_card.dart';
+import 'package:quran_app/features/quran/presentation/widgets/last_read.dart';
 import 'package:quran_app/features/quran/presentation/widgets/quran_list_item.dart';
-import 'package:quran_app/features/quran/presentation/widgets/section_title.dart';
 
 class QuranHome extends StatefulWidget {
   const QuranHome({super.key});
@@ -80,13 +79,7 @@ class _QuranHomeState extends State<QuranHome> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(
-            title: Dictionary.lastRead,
-            padding: 16.0,
-          ),
-          const SizedBox(height: 16.0),
-          const LastReadCard(),
-          const SizedBox(height: 16.0),
+          const LastRead(),
           BlocBuilder<QuranListBloc, QuranListState>(
             builder: (context, state) {
               return switch (state) {
