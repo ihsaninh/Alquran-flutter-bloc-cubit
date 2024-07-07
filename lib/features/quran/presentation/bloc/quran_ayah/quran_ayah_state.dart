@@ -28,5 +28,3 @@ final class QuranAyahLoadSuccess extends QuranAyahState {
   @override
   List<Object> get props => [ayahList];
 }
-
-class AddToLastReadSuccess extends QuranAyahState {}

@@ -72,15 +72,12 @@ class _QuranAyahState extends State<QuranAyah> {
   }
 
   Widget _buildContent(BuildContext context, QuranAyahState state) {
-    if (state is QuranAyahLoadInProgress) {
-      return _buildLoadingIndicator();
-    } else if (state is QuranAyahLoadFailure) {
-      return _buildErrorState(state);
-    } else if (state is QuranAyahLoadSuccess) {
-      return _buildAyahList(context, state);
-    } else {
-      return const SizedBox();
-    }
+    return switch (state) {
+      QuranAyahInitial() => const SizedBox(),
+      QuranAyahLoadInProgress() => _buildLoadingIndicator(),
+      QuranAyahLoadSuccess() => _buildAyahList(context, state),
+      QuranAyahLoadFailure() => _buildErrorState(state),
+    };
   }
 
   Widget _buildLoadingIndicator() {
