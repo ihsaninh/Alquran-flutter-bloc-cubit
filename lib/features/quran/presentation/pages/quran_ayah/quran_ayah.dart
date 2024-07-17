@@ -73,10 +73,23 @@ class _QuranAyahState extends State<QuranAyah> {
     return Container(
       height: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: BlocBuilder<QuranAyahBloc, QuranAyahState>(
-        builder: (context, state) {
-          return _buildContent(context, state);
+      child: BlocListener<QuranAyahBloc, QuranAyahState>(
+        listener: (context, state) {
+          if (state is QuranAyahLoadSuccess) {
+            if (widget.surah.lastReadAyah != null) {
+              Future.delayed(const Duration(milliseconds: 300), () {
+                itemScrollController.jumpTo(
+                  index: widget.surah.lastReadAyah! + 1,
+                );
+              });
+            }
+          }
         },
+        child: BlocBuilder<QuranAyahBloc, QuranAyahState>(
+          builder: (context, state) {
+            return _buildContent(context, state);
+          },
+        ),
       ),
     );
   }

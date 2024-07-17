@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_last_read/quran_last_read_bloc.dart';
@@ -35,7 +36,9 @@ class _LastReadState extends State<LastRead> {
                   margin: EdgeInsets.zero,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12.0),
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed("quran-ayah", extra: state.surah);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
@@ -68,7 +71,7 @@ class _LastReadState extends State<LastRead> {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            state.surah.latin,
+                            "Surah ${state.surah.latin}",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!

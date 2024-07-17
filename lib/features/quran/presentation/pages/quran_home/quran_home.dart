@@ -47,12 +47,12 @@ class QuranHome extends StatelessWidget {
       length: 2,
       child: Expanded(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const TabBar(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
                 dividerHeight: 0.0,
                 tabs: [
                   Tab(text: Dictionary.surahTabs),

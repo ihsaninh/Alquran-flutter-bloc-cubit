@@ -10,7 +10,10 @@ class SurahBasmallah extends StatelessWidget {
   Widget build(BuildContext context) {
     if (surah.id == 1 || surah.id == 9) return const SizedBox();
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.only(
+        top: 16.0,
+        bottom: 32.0,
+      ),
       child: SvgPicture.asset(
         'assets/images/bismillah.svg',
         width: 48,
