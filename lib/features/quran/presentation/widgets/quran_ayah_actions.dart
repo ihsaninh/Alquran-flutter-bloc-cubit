@@ -6,6 +6,7 @@ import 'package:quran_app/core/constants/dictionary.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_ayah.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_last_read/quran_last_read_bloc.dart';
 import 'package:quran_app/features/quran/presentation/widgets/tafsir_sheet.dart';
+import 'package:share_plus/share_plus.dart';
 
 enum MoreItems { share, lastRead }
 
@@ -116,6 +117,7 @@ class QuranAyahActions extends StatelessWidget {
 
   PopupMenuButton<MoreItems> _moreActions(BuildContext context) {
     return PopupMenuButton<MoreItems>(
+      tooltip: Dictionary.moreActions,
       color: Theme.of(context).colorScheme.surfaceContainerLow,
       icon: Icon(
         LucideIcons.circleEllipsis,
@@ -123,30 +125,13 @@ class QuranAyahActions extends StatelessWidget {
         size: 22.0,
       ),
       popUpAnimationStyle: AnimationStyle(
-        curve: Curves.easeInQuad,
+        duration: const Duration(milliseconds: 400),
       ),
-      offset: const Offset(0.0, 52.0),
-      onSelected: (MoreItems item) {
-        _handleMenuItemSelected(context, item);
-      },
-      itemBuilder: (BuildContext context) {
-        return _buildPopupMenuItems();
-      },
+      elevation: 1.0,
+      offset: const Offset(0.0, 56.0),
+      onSelected: (MoreItems item) => _handleMenuItemSelected(context, item),
+      itemBuilder: (BuildContext context) => _buildPopupMenuItems(),
     );
-  }
-
-  void _handleMenuItemSelected(BuildContext context, MoreItems item) {
-    if (item == MoreItems.lastRead) {
-      context.read<QuranLastReadBloc>().add(QuranAddToLastRead(
-          surah: quranAyah.surah, index: index, lastReadAyah: quranAyah.ayah));
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Ayat berhasil ditandai sebagai terakhir baca'),
-        ),
-      );
-    } else if (item == MoreItems.share) {
-      // Handle share action
-    }
   }
 
   List<PopupMenuItem<MoreItems>> _buildPopupMenuItems() {
@@ -169,5 +154,25 @@ class QuranAyahActions extends StatelessWidget {
         title: Text(text),
       ),
     );
+  }
+
+  void _handleMenuItemSelected(BuildContext context, MoreItems item) {
+    if (item == MoreItems.lastRead) {
+      QuranLastReadBloc bloc = context.read<QuranLastReadBloc>();
+      bloc.add(QuranAddToLastRead(
+          surah: quranAyah.surah, index: index, lastReadAyah: quranAyah.ayah));
+      bloc.add(const QuranGetLastRead());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Ayat berhasil ditandai sebagai terakhir baca'),
+        ),
+      );
+    } else if (item == MoreItems.share) {
+      Share.share(
+        "${quranAyah.arabic}\n${quranAyah.translation} [${quranAyah.surahId}]:${quranAyah.ayah}",
+        subject: 'Bagikan ayat',
+      );
+    }
   }
 }

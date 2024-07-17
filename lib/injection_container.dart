@@ -31,7 +31,7 @@ Future<void> initializeDependencies() async {
   // Dio
   locator.registerLazySingleton<Dio>(() => Dio());
 
-  // Dependencies
+  // Data
   locator.registerSingleton<QuranApiService>(QuranApiService(locator()));
   locator.registerSingleton<QuranLocalDataSource>(
       QuranLocalDataSourceImpl(locator()));

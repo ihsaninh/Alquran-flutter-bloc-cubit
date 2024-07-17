@@ -56,11 +56,11 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           pageTransitionsTheme: const PageTransitionsTheme(
             builders: <TargetPlatform, PageTransitionsBuilder>{
-              TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
             },
           ),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
-          textTheme: GoogleFonts.interTextTheme(
+          textTheme: GoogleFonts.arimoTextTheme(
             Theme.of(context).textTheme,
           ),
         ),

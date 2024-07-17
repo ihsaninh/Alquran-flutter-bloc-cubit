@@ -16,7 +16,7 @@ class QuranListItem extends StatelessWidget {
         context.pushNamed("quran-ayah", extra: quranList);
       },
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

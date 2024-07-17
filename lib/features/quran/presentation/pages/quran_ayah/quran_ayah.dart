@@ -5,10 +5,12 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quran_app/features/quran/domain/entities/quran_list.dart';
 import 'package:quran_app/features/quran/presentation/bloc/quran_ayah/quran_ayah_bloc.dart';
 import 'package:quran_app/features/quran/presentation/widgets/custom_appbar.dart';
+import 'package:quran_app/features/quran/presentation/widgets/go_to_ayah_dialog.dart';
 import 'package:quran_app/features/quran/presentation/widgets/quran_ayah_item.dart';
 import 'package:quran_app/features/quran/presentation/widgets/settings_sheet.dart';
 import 'package:quran_app/features/quran/presentation/widgets/surah_basmallah.dart';
 import 'package:quran_app/features/quran/presentation/widgets/surah_info_card.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class QuranAyah extends StatefulWidget {
   final QuranListEntity surah;
@@ -20,6 +22,9 @@ class QuranAyah extends StatefulWidget {
 }
 
 class _QuranAyahState extends State<QuranAyah> {
+  final ItemScrollController itemScrollController = ItemScrollController();
+  String ayatText = '';
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +55,11 @@ class _QuranAyahState extends State<QuranAyah> {
         splashColor: Theme.of(context).colorScheme.onPrimaryFixedVariant,
       ),
       actions: [
+        IconButton(
+          onPressed: () => _buildDialog(context),
+          icon: const Icon(Icons.low_priority_outlined),
+          splashColor: Theme.of(context).colorScheme.secondaryContainer,
+        ),
         IconButton(
           onPressed: () => _showSettingsSheet(context),
           icon: const Icon(LucideIcons.settings2),
@@ -95,25 +105,20 @@ class _QuranAyahState extends State<QuranAyah> {
   Widget _buildAyahList(BuildContext context, QuranAyahLoadSuccess state) {
     return RefreshIndicator(
       onRefresh: () async {},
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SurahInfoCard(surah: widget.surah),
-            SurahBasmallah(surah: widget.surah),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: state.ayahList.length,
-                itemBuilder: (context, index) {
-                  final quranAyah = state.ayahList[index];
-                  return QuranAyahItem(quranAyah: quranAyah, index: index);
-                },
-              ),
-            ),
-          ],
-        ),
+      child: ScrollablePositionedList.builder(
+        itemScrollController: itemScrollController,
+        padding: const EdgeInsets.only(top: 16.0),
+        itemCount: state.ayahList.length + 2,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return SurahInfoCard(surah: widget.surah);
+          } else if (index == 1) {
+            return SurahBasmallah(surah: widget.surah);
+          } else {
+            final quranAyah = state.ayahList[index - 2];
+            return QuranAyahItem(quranAyah: quranAyah, index: index - 2);
+          }
+        },
       ),
     );
   }
@@ -125,6 +130,31 @@ class _QuranAyahState extends State<QuranAyah> {
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerLowest,
       builder: (BuildContext context) {
         return const SettingsSheet();
+      },
+    );
+  }
+
+  void _buildDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return GoToAyahDialog(
+          surah: widget.surah,
+          onPressed: () => {
+            Navigator.pop(context),
+            Future.delayed(const Duration(milliseconds: 300), () {
+              itemScrollController.scrollTo(
+                index: int.parse(ayatText) + 1,
+                duration: const Duration(milliseconds: 200),
+              );
+            })
+          },
+          onChanged: (val) => {
+            setState(() {
+              ayatText = val;
+            })
+          },
+        );
       },
     );
   }

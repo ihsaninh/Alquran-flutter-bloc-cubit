@@ -2,6 +2,7 @@ class Dictionary {
   static const String appName = 'Al Quran';
   static const String homeTabs = 'Beranda';
   static const String bookmarkTabs = 'Bookmark';
+  static const String surahTabs = 'Surah';
   static const String settingsTabs = 'Setelan';
   static const String settings = 'Pengaturan Aplikasi';
   static const String about = 'Tentang Aplikasi';
@@ -26,4 +27,7 @@ class Dictionary {
   static const String surah = 'Daftar Surah';
   static const String settingsSurah = 'Setelan Surah';
   static const String saveBookmark = 'Simpan ke bookmark';
+  static const String quran = 'Quran';
+  static const String salat = 'Jadwal Sholat';
+  static const String bookmarkEmpty = 'Daftar Bookmark Kosong';
 }
