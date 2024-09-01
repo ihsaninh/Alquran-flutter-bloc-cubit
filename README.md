@@ -41,10 +41,10 @@ Al-Quran-Mobile-React-Native is an app Al-Quran for Mobile. Its only support Ind
 
 ## Screenshot
 <div align="center">
-    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss1.jpg">
-    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss2.jpg">   
-    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss3.jpg">    
-    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss4.jpg">
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/ss/ss1.jpg">
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/ss/ss2.jpg">   
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/ss/ss3.jpg">    
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/ss/ss4.jpg">
 </div>
 
 ## Author
