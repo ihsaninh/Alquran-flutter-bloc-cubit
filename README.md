@@ -1,16 +1,62 @@
-# quran_app
+<h1 align="center">Al-Quran Mobile App</h1>
 
-Quran
+## Table of Contents
 
-## Getting Started
+- [Table of Contents](#table-of-contents)
+- [Introduction](#introduction)
+- [Features](#features)
+- [How To Run](#how-to-run)
+- [Screenshot](#screenshot)
+- [Author](#author)
 
-This project is a starting point for a Flutter application.
+## Introduction
+Al-Quran-Mobile-React-Native is an app Al-Quran for Mobile. Its only support Indonesian language. The data is provide by API from <a href="https://quran.kemenag.go.id/">KEMENAG RI</a>.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features
+* User can see a list of all Surahs.
+* User can view all Ayahs within a Surah.
+* Surah settings for personalized reading.
+* Jump to a specific Ayah.
+* Bookmarks and last-read functionality.
+* Share Ayahs with others.
+* And more.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## How To Run
+
+1. Clone this repository
+   ```
+   $ git clone https://github.com/ihsaninh/Alquran-flutter-bloc-cubit
+   ```
+2. Install all dependencies
+   ```
+   $ cd Alquran-flutter-bloc-cubit
+   $ flutter pub get
+   ```
+3. Run Al-Quran Mobile App
+   ```
+   $ flutter run
+   ```
+
+## Screenshot
+<div align="center">
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss1.jpg">
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss2.jpg">   
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss3.jpg">    
+    <img width="300" src="https://github.com/ihsaninh/Alquran-flutter-bloc-cubit/blob/master/assets/images/ss/ss4.jpg">
+</div>
+
+## Author
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/ihsaninh">
+          <img width="100" src="https://avatars0.githubusercontent.com/u/24758414?s=460&v=4" alt="Ihsan Nurul Habib"><br/>
+          <sub><b>Ihsan Nurul Habib</b></sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</center>
