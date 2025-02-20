@@ -28,8 +28,16 @@ Future<void> initializeDependencies() async {
     () => Hive.box(name: 'quran'),
   );
 
-  // Dio
-  locator.registerLazySingleton<Dio>(() => Dio());
+  locator.registerLazySingleton<Dio>(() {
+    final dio = Dio(
+      BaseOptions(
+        headers: {
+          'Origin': 'https://quran.kemenag.go.id',
+        },
+      ),
+    );
+    return dio;
+  });
 
   // Data
   locator.registerSingleton<QuranApiService>(QuranApiService(locator()));
